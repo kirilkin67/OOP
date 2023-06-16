@@ -23,7 +23,7 @@ class Ui_MainWindow(object):
         self.label.setMaximumSize(QtCore.QSize(450, 70))
         self.label.setText("")
         self.label.setTextFormat(QtCore.Qt.TextFormat.AutoText)
-        self.label.setPixmap(QtGui.QPixmap(".\\LineProgramUi\\formula.jpg"))
+        self.label.setPixmap(QtGui.QPixmap("formula.jpg"))
         self.label.setScaledContents(False)
         self.label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.label.setObjectName("label")

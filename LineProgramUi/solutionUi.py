@@ -1,5 +1,5 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
-from app import UiMainWindow
+from app_1 import UiMainWindow
 from math import radians, sin, tan
 
 import sys
