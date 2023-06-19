@@ -39,7 +39,7 @@ class UiMainWindow(object):
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.label = QtWidgets.QLabel(self.widget)
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("formula.jpg"))
+        self.label.setPixmap(QtGui.QPixmap("../LineProgramUi/formula.jpg"))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         self.verticalLayout_2.addWidget(self.label)

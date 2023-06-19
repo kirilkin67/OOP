@@ -1,3 +1,3 @@
 # OOP
 Python - Разработка классов
-Python - Графический интерфей, Qt Designer
+Python - Графический интерфейс, Qt Designer
