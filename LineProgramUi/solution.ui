@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
+    <width>550</width>
     <height>500</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>20</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="minimumSize">
    <size>
@@ -18,50 +24,351 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>500</width>
+    <width>550</width>
     <height>500</height>
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Решение линейного урвнения</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(78, 120, 166, 255), stop:1 rgba(255, 255, 255, 255));
+
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>25</x>
-      <y>50</y>
-      <width>450</width>
-      <height>70</height>
+      <x>30</x>
+      <y>40</y>
+      <width>491</width>
+      <height>100</height>
      </rect>
     </property>
     <property name="minimumSize">
      <size>
-      <width>450</width>
-      <height>70</height>
+      <width>490</width>
+      <height>100</height>
      </size>
     </property>
-    <property name="maximumSize">
-     <size>
-      <width>450</width>
-      <height>70</height>
-     </size>
+    <property name="styleSheet">
+     <string notr="true">border: 3px solid rgb(0, 0, 255);</string>
     </property>
     <property name="text">
      <string/>
     </property>
-    <property name="textFormat">
-     <enum>Qt::AutoText</enum>
-    </property>
     <property name="pixmap">
-     <pixmap>formula.jpg</pixmap>
+     <pixmap>image1.jpg</pixmap>
     </property>
-    <property name="scaledContents">
-     <bool>false</bool>
+   </widget>
+   <widget class="QPushButton" name="close">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>400</y>
+      <width>230</width>
+      <height>50</height>
+     </rect>
     </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
+    <property name="minimumSize">
+     <size>
+      <width>230</width>
+      <height>50</height>
+     </size>
     </property>
+    <property name="font">
+     <font>
+      <family>Times New Roman</family>
+      <pointsize>16</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(152, 0, 0);
+
+border: 5px outset rgb(255, 0, 0);
+border-radius:20px
+</string>
+    </property>
+    <property name="text">
+     <string>Закрыть</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>330</y>
+      <width>481</width>
+      <height>52</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QPushButton" name="result">
+       <property name="minimumSize">
+        <size>
+         <width>230</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>16</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(85, 170, 127);
+background-color: rgb(110, 240, 169);
+border: 5px outset rgb(0, 85, 0);
+border-radius:20px
+</string>
+       </property>
+       <property name="text">
+        <string>Результат</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="clear">
+       <property name="minimumSize">
+        <size>
+         <width>230</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>16</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(85, 170, 127);
+background-color: rgb(110, 240, 169);
+border: 5px outset rgb(0, 85, 0);
+border-radius:20px
+</string>
+       </property>
+       <property name="text">
+        <string>Очистить</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLineEdit" name="alfa">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>220</y>
+      <width>100</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>100</width>
+      <height>33</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>100</width>
+      <height>33</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 3px solid rgb(0, 0, 127);</string>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="name_precision">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>270</y>
+      <width>150</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>150</width>
+      <height>33</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>150</width>
+      <height>33</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <family>Times New Roman</family>
+      <pointsize>16</pointsize>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(127, 254, 188);
+border: 3px solid rgb(0,254, 255);</string>
+    </property>
+    <property name="text">
+     <string>Точность</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="name_alfa">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>220</y>
+      <width>150</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>150</width>
+      <height>33</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>150</width>
+      <height>33</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <family>Times New Roman</family>
+      <pointsize>16</pointsize>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="tabletTracking">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 127);
+border: 3px solid rgb(0, 127, 127);</string>
+    </property>
+    <property name="text">
+     <string>ALFA, градусы</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="precision">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>270</y>
+      <width>100</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>100</width>
+      <height>33</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>100</width>
+      <height>33</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 3px solid rgb(0, 0, 127);</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>160</y>
+      <width>491</width>
+      <height>38</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLineEdit" name="result_1">
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);
+border: 3px solid rgb(0, 0, 127);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>80</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="result_2">
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);
+border: 3px solid rgb(0, 0, 127);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -69,7 +376,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>500</width>
+     <width>550</width>
      <height>22</height>
     </rect>
    </property>
@@ -77,5 +384,86 @@
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>clear</sender>
+   <signal>clicked()</signal>
+   <receiver>precision</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>321</x>
+     <y>357</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>215</x>
+     <y>306</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>clear</sender>
+   <signal>clicked()</signal>
+   <receiver>alfa</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>347</x>
+     <y>368</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>256</x>
+     <y>260</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>clear</sender>
+   <signal>clicked()</signal>
+   <receiver>result_2</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>434</x>
+     <y>369</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>434</x>
+     <y>217</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>close</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>300</x>
+     <y>445</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>158</x>
+     <y>442</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>clear</sender>
+   <signal>clicked()</signal>
+   <receiver>result_1</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>378</x>
+     <y>377</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>196</x>
+     <y>197</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
