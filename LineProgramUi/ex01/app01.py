@@ -11,19 +11,23 @@ COLOR_WHITE = "rgb(255, 255, 255)"
 def clear():
     ui.alfa.setText('0')
     ui.precision.setValue(0)
-    style_sheet = f"background-color: {COLOR_WHITE}; border: 3px solid rgb(0, 0, 127);"
     ui.result_1.clear()
-    ui.result_1.setStyleSheet(style_sheet)
+    set_stylesheet(ui.result_1, COLOR_WHITE)
     ui.result_2.clear()
-    ui.result_2.setStyleSheet(style_sheet)
+    set_stylesheet(ui.result_2, COLOR_WHITE)
 
 
-def setErrorMessageResult(line_edit: QtWidgets.QLineEdit, rgb):
+def error_message_result(line_edit: QtWidgets.QLineEdit, color_rgb):
     font = QtGui.QFont()
     font.setPointSize(16)
     line_edit.setFont(font)
-    line_edit.setStyleSheet(f"background-color: {rgb}; border: 3px solid rgb(0, 0, 127);")
+    set_stylesheet(line_edit, color_rgb)
     line_edit.setText("Деление на ноль.")
+
+
+def set_stylesheet(line_edit: QtWidgets.QLineEdit, color_rgb):
+    stylesheet = f"background-color: {color_rgb}; border: 3px solid rgb(0, 0, 127);"
+    line_edit.setStyleSheet(stylesheet)
 
 
 def calculate():
@@ -40,24 +44,26 @@ def calculate():
         ui.result_1.setText(str(round(result_1, precision)))
         ui.result_2.setText(str(round(result_2, precision)))
     except ZeroDivisionError:
-        setErrorMessageResult(ui.result_1, COLOR_RED)
-        setErrorMessageResult(ui.result_2, COLOR_RED)
+        error_message_result(ui.result_1, COLOR_RED)
+        error_message_result(ui.result_2, COLOR_RED)
 
 
 def first_formula(alpha_radians: float, precision: int):
     try:
         result = (1 - 2 * sin(alpha_radians) ** 2) / (1 + sin(2 * alpha_radians))
         ui.result_1.setText(str(round(result, precision)))
+        set_stylesheet(ui.result_1, COLOR_WHITE)
     except ZeroDivisionError:
-        setErrorMessageResult(ui.result_1, COLOR_RED)
+        error_message_result(ui.result_1, COLOR_RED)
 
 
 def second_formula(alpha_radians: float, precision: int):
     try:
         result_2 = (1 - tan(alpha_radians)) / (1 + tan(alpha_radians))
         ui.result_2.setText(str(round(result_2, precision)))
+        set_stylesheet(ui.result_2, COLOR_WHITE)
     except ZeroDivisionError:
-        setErrorMessageResult(ui.result_2, COLOR_RED)
+        error_message_result(ui.result_2, COLOR_RED)
 
 
 def display_form():

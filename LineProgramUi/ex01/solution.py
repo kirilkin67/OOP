@@ -30,7 +30,7 @@ class Ui_MainWindow(object):
         self.label.setMinimumSize(QtCore.QSize(490, 100))
         self.label.setStyleSheet("border: 3px solid rgb(0, 0, 255);")
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("image1.jpg"))
+        self.label.setPixmap(QtGui.QPixmap("image.jpg"))
         self.label.setObjectName("label")
         self.close = QtWidgets.QPushButton(parent=self.centralwidget)
         self.close.setGeometry(QtCore.QRect(280, 400, 230, 50))
