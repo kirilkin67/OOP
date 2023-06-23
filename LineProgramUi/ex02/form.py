@@ -12,13 +12,13 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(530, 579)
+        MainWindow.resize(530, 600)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(20)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
-        MainWindow.setMinimumSize(QtCore.QSize(530, 500))
+        MainWindow.setMinimumSize(QtCore.QSize(530, 600))
         MainWindow.setMaximumSize(QtCore.QSize(600, 600))
         MainWindow.setStyleSheet("QWidget{\n"
 "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(0, 145, 65, 221), stop:1 rgba(255, 255, 255, 255));\n"
@@ -39,9 +39,9 @@ class Ui_MainWindow(object):
         font.setBold(True)
         self.close.setFont(font)
         self.close.setStyleSheet("background-color: rgb(152, 0, 0);\n"
-"\n"
 "border: 5px outset rgb(255, 0, 0);\n"
-"border-radius: 20px;")
+"border-radius: 20px;\n"
+"")
         self.close.setObjectName("close")
         self.imput = QtWidgets.QLineEdit(parent=self.centralwidget)
         self.imput.setGeometry(QtCore.QRect(230, 130, 100, 80))
@@ -53,7 +53,8 @@ class Ui_MainWindow(object):
         font.setBold(True)
         self.imput.setFont(font)
         self.imput.setStyleSheet("border: 3px solid rgb(0, 0, 127);\n"
-"background-color: rgb(255, 255, 255);")
+"background-color: rgb(255, 255, 255);\n"
+"box-shadow: 10px 20px 30px 15px rgb(0, 0, 0, 0.5);")
         self.imput.setInputMask("")
         self.imput.setText("")
         self.imput.setMaxLength(3)
@@ -88,15 +89,15 @@ class Ui_MainWindow(object):
 "")
         self.label_2.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.label_2.setObjectName("label_2")
-        self.widget = QtWidgets.QWidget(parent=self.centralwidget)
-        self.widget.setGeometry(QtCore.QRect(20, 220, 491, 221))
-        self.widget.setObjectName("widget")
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.widget)
+        self.layoutWidget = QtWidgets.QWidget(parent=self.centralwidget)
+        self.layoutWidget.setGeometry(QtCore.QRect(20, 220, 491, 221))
+        self.layoutWidget.setObjectName("layoutWidget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.layoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setObjectName("verticalLayout")
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.label = QtWidgets.QLabel(parent=self.widget)
+        self.label = QtWidgets.QLabel(parent=self.layoutWidget)
         self.label.setMinimumSize(QtCore.QSize(200, 50))
         font = QtGui.QFont()
         font.setFamily("Book Antiqua")
@@ -109,7 +110,7 @@ class Ui_MainWindow(object):
         self.label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.label.setObjectName("label")
         self.horizontalLayout.addWidget(self.label)
-        self.result = QtWidgets.QLineEdit(parent=self.widget)
+        self.result = QtWidgets.QLineEdit(parent=self.layoutWidget)
         self.result.setMinimumSize(QtCore.QSize(150, 80))
         font = QtGui.QFont()
         font.setFamily("Book Antiqua")
@@ -129,7 +130,7 @@ class Ui_MainWindow(object):
         self.verticalLayout.addItem(spacerItem)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.button_result = QtWidgets.QPushButton(parent=self.widget)
+        self.button_result = QtWidgets.QPushButton(parent=self.layoutWidget)
         self.button_result.setMinimumSize(QtCore.QSize(240, 80))
         font = QtGui.QFont()
         font.setFamily("Cambria")
@@ -145,7 +146,7 @@ class Ui_MainWindow(object):
 "")
         self.button_result.setObjectName("button_result")
         self.horizontalLayout_2.addWidget(self.button_result)
-        self.clear = QtWidgets.QPushButton(parent=self.widget)
+        self.clear = QtWidgets.QPushButton(parent=self.layoutWidget)
         self.clear.setMinimumSize(QtCore.QSize(50, 80))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
@@ -157,6 +158,7 @@ class Ui_MainWindow(object):
 "color: white;\n"
 "border: 10px outset rgb(0, 85, 0);\n"
 "background-color: qconicalgradient(cx:0.381, cy:0.455, angle:0, stop:0.0508475 rgba(13, 213, 51, 255), stop:0.16 rgba(0, 154, 22, 255), stop:0.231638 rgba(40, 140, 83, 255), stop:0.285 rgba(67, 181, 74, 255), stop:0.345 rgba(101, 219, 102, 255), stop:0.415 rgba(112, 236, 170, 255), stop:0.52 rgba(80, 190, 76, 255), stop:0.57 rgba(80, 156, 51, 255), stop:0.635 rgba(65, 142, 42, 255), stop:0.695 rgba(54, 174, 68, 255), stop:0.75 rgba(94, 202, 86, 255), stop:0.815 rgba(139, 187, 73, 255), stop:0.88 rgba(0, 156, 51, 255), stop:0.935 rgba(118, 174, 26, 255), stop:1 rgba(65, 212, 13, 255));\n"
+"box-shadow: 10px 20px 30px 15px rgb(0, 0, 0, 0.5);\n"
 "")
         self.clear.setObjectName("clear")
         self.horizontalLayout_2.addWidget(self.clear)

@@ -1,4 +1,5 @@
 from PyQt6 import QtGui, QtWidgets
+from PyQt6.QtWidgets import QMessageBox
 from form import Ui_MainWindow
 import sys
 
@@ -29,8 +30,22 @@ def calculate(integer: int):
     return str(integer)
 
 
+def show_dialog():
+    msg_box = QMessageBox()
+    msg_box.setWindowTitle("Информационное сообщение")
+    msg_box.setText("Необходимо ввести трёхзначное число")
+    msg_box.setIcon(QMessageBox.Icon.Information)
+    msg_box.exec()
+
+
+def validate_input(integer: int):
+    if integer < 100:
+        show_dialog()
+
+
 def display_form():
     integer = int(ui.imput.text())
+    validate_input(integer)
     ui.result.setText(calculate(integer))
 
 
