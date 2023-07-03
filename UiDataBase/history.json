@@ -1,0 +1,108 @@
+{
+  "subject": "История",
+  "test_name": "Искусство Древнего Египта",
+  "questions": [
+    {
+      "question": "Из какого материала сооружены пирамиды?",
+      "answers": [
+        {
+          "response": "кирпича",
+          "correct": false
+        },
+        {
+          "response": "каменных глыб",
+          "correct": true
+        },
+        {
+          "response": "бетона",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "question": "Какая из египетских пирамид самая высокая?",
+      "answers": [
+        {
+          "response": "пирамида Хеопса",
+          "correct": true
+        },
+        {
+          "response": "пирамида Джо сера",
+          "correct": false
+        },
+        {
+          "response": "пирамида Хефрена",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "question": "На строительстве пирамид трудились",
+      "answers": [
+        {
+          "response": "рабы",
+          "correct": false
+        },
+        {
+          "response": "крестьяне и ремесленники",
+          "correct": true
+        },
+        {
+          "response": "вельможи и писцы",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "question": "Единственная гробница, сохранившаяся нетронутой до 1922г., — это гробница фараона",
+      "answers": [
+        {
+          "response": "Хеопса",
+          "correct": false
+        },
+        {
+          "response": "Тутанхамона",
+          "correct": true
+        },
+        {
+          "response": "Тутмоса",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "question": "В каком музее Санкт-Петербурга можно увидеть египетские мумии и саркофаги?",
+      "answers": [
+        {
+          "response": "Государственном Эрмитаже",
+          "correct": true
+        },
+        {
+          "response": "Русском музее",
+          "correct": false
+        },
+        {
+          "response": "Музее восковых фигур",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "question": "О сооружении пирамид рассказал древнегреческий исто\u00ADрик",
+      "answers": [
+        {
+          "response": "Фукидид",
+          "correct": false
+        },
+        {
+          "response": "Плутарх",
+          "correct": false
+        },
+        {
+          "response": "Геродот",
+          "correct": true
+        }
+      ]
+    }
+  ]
+}
