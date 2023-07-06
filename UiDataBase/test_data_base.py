@@ -46,11 +46,15 @@ class TestDataBase:
     def insert_subject(self, subject_name: str):
         with sqlite3.connect(self.name) as conn:
             cur = conn.cursor()
-            cur.execute("INSERT OR IGNORE INTO subject (subject_name) VALUES (?)", [subject_name])
-            conn.commit()
             res = cur.execute("SELECT id FROM subject WHERE subject_name = ?", [subject_name])
-            self.subject_id = res.fetchone()[0]
-            print(f"{subject_name}, {self.subject_id}")
+            row = res.fetchone()
+            if row is not None:
+                self.subject_id = row[0]
+            else:
+                cur.execute("INSERT OR IGNORE INTO subject (subject_name) VALUES (?)", [subject_name])
+                conn.commit()
+                res = cur.execute("SELECT id FROM subject WHERE subject_name = ?", [subject_name])
+                self.subject_id = res.fetchone()[0]
 
     def insert_test_name(self, test_name: str):
         with sqlite3.connect(self.name) as conn:
@@ -59,17 +63,7 @@ class TestDataBase:
             print(f"SUBJECT_ID - {self.subject_id}")
             cur.execute("INSERT OR IGNORE INTO test_name (subject_id, test_name) VALUES (?, ?)", data)
             conn.commit()
-            res = cur.execute("SELECT id FROM test_name WHERE test_name = ?", [test_name])
-            self.test_name_id = res.fetchone()[0]
-            print(f"{test_name} - {self.test_name_id}")
-
-    def insert_questions(self, question: str):
-        with sqlite3.connect(self.name) as conn:
-            cur = conn.cursor()
-            cur.execute("INSERT INTO questions (test_name_id, question) VALUES (?, ?)", [self.test_name_id, question])
-            conn.commit()
-            # self.test_name_id = cur.execute("SELECT id FROM test_name WHERE test_name = ?", [test_name])
-            # print(f"{test_name} - {self.test_name_id}")
+            self.select_test_id_by_name(cur, test_name)
 
     def insert_answers(self, question: str, response: str, correct: bool):
         with sqlite3.connect(self.name) as conn:
@@ -79,11 +73,58 @@ class TestDataBase:
             cur.execute("INSERT INTO answers (question_id, response, correct) VALUES (?, ?, ?)", data)
             conn.commit()
 
+    def insert_questions(self, question: str):
+        with sqlite3.connect(self.name) as conn:
+            cur = conn.cursor()
+            cur.execute("INSERT INTO questions (test_name_id, question) VALUES (?, ?)", [self.test_name_id, question])
+            conn.commit()
+
     def select_question_id(self, question: str):
         with sqlite3.connect(self.name) as conn:
             cur = conn.cursor()
             res = cur.execute("SELECT id FROM questions WHERE question = ?", [question])
             question_id, = res.fetchone()
-            conn.commit()
-            print(f"ID вопроса - {question_id}")
+            # print(f"ID вопроса - {question_id}")
             return question_id
+
+    def select_test_name_id(self, name: str):
+        with sqlite3.connect(self.name) as conn:
+            cur = conn.cursor()
+            self.select_test_id_by_name(cur, name)
+
+    def select_test_id_by_name(self, cursor, test_name):
+        res = cursor.execute("SELECT id FROM test_name WHERE test_name = ?", [test_name])
+        self.test_name_id = res.fetchone()[0]
+        print(f"{test_name} - {self.test_name_id}")
+
+    def select_questions(self):
+        with sqlite3.connect(self.name) as conn:
+            cur = conn.cursor()
+            res = cur.execute("SELECT * FROM questions WHERE test_name_id = ?", [self.test_name_id])
+            return res.fetchall()
+
+    def select_answers(self, question_id: int):
+        with sqlite3.connect(self.name) as conn:
+            cur = conn.cursor()
+            res = cur.execute("SELECT * FROM answers WHERE question_id = ?", [question_id])
+            return res.fetchall()
+
+    def select_subject_name_all(self):
+        with sqlite3.connect(self.name) as conn:
+            cur = conn.cursor()
+            # res = cur.execute("SELECT subject_name FROM subject")
+            res = cur.execute("SELECT * FROM subject")
+            return res.fetchall()
+
+    def select_subject_id_by_name(self, subject_name):
+        with sqlite3.connect(self.name) as conn:
+            cur = conn.cursor()
+            res = cur.execute("SELECT id FROM subject WHERE subject_name = ?", [subject_name])
+            self.subject_id = res.fetchone()[0]
+            print(f"ID -{self.subject_id}, предмет {subject_name}")
+
+    def select_test_name(self):
+        with sqlite3.connect(self.name) as conn:
+            cur = conn.cursor()
+            res = cur.execute("SELECT test_name FROM test_name WHERE subject_id = ?", [self.subject_id])
+            return res.fetchall()

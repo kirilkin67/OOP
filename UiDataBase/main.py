@@ -6,6 +6,8 @@ from test_data_base import TestDataBase
 import json
 
 DATA_BASE = "subject_tests.db"
+TEST_NAME = "Искусство Древнего Египта"
+questions = tuple()
 
 
 def read_test_file_json(name: str):
@@ -34,10 +36,8 @@ def create_data_base(data_base: TestDataBase):
 def insert_questions_and_answers(data_base: TestDataBase, items: list):
     for item in items:
         result = item["question"]
-        print(f'ВОПРОС - {result}')
         data_base.insert_questions(result)
         for response in item["answers"]:
-            print(f'ОТВЕТ на ВОПРОС - {response["response"]}, ПРАВДА - {response["correct"]}')
             data_base.insert_answers(result, response["response"], response["correct"])
 
 
@@ -47,12 +47,58 @@ def insert_value_in_data_base(data_base: TestDataBase, json_obj):
     insert_questions_and_answers(data_base, json_obj["questions"])
 
 
-def create_test_data():
-    file_json_name = "history.json"
-    db = TestDataBase(DATA_BASE)
-    create_data_base(db)
-    test_subject = read_test_file_json(file_json_name)
+def add_test(file_name_json: str):
+    test_subject = read_test_file_json(file_name_json)
     insert_value_in_data_base(db, test_subject)
+
+
+def setQuestionAnswer(tasks: tuple, index: int):
+    question_id, test_id, question = tasks[index]
+    answers = db.select_answers(question_id)
+    ui.question.setText(question)
+    ui.response_1.setText(answers[0][2])
+    ui.response_2.setText(answers[1][2])
+    ui.response_3.setText(answers[2][2])
+
+
+def setSubjectComboBox():
+    rows = db.select_subject_name_all()
+    ui.subject.addItem("Выбор предмета")
+    for row in rows:
+        subject_id, subject = row
+        ui.subject.addItem(subject)
+
+
+def setTestNameComboBox():
+    rows = db.select_test_name()
+    ui.testName.addItem("Выбор теста")
+    for row in rows:
+        ui.testName.addItem(row[0])
+
+
+def clearAll():
+    ui.testName.clear()
+    ui.question.clear()
+    ui.response_1.setText('')
+    ui.response_2.setText('')
+    ui.response_3.setText('')
+
+
+def clickerSubjectComboBox():
+    clearAll()
+    subject_name = ui.subject.currentText()
+    print(f"ПРЕДМЕТ - {subject_name}")
+    db.select_subject_id_by_name(subject_name)
+    setTestNameComboBox()
+
+
+def clickerTestNameComboBox():
+    ui.question.clear()
+    test_name = ui.testName.currentText()
+    print(f"TEST - {test_name}")
+    db.select_test_name_id(test_name)
+    tasks = db.select_questions()
+    setQuestionAnswer(tasks, 1)
 
 
 app = QtWidgets.QApplication(sys.argv)
@@ -60,7 +106,18 @@ Dialog = QtWidgets.QDialog()
 ui = Ui_Dialog()
 ui.setupUi(Dialog)
 
-# ui.subject.setTe
+
+db = TestDataBase(DATA_BASE)
+create_data_base(db)
+history = "history.json"
+add_test(history)
+history = "history2.json"
+add_test(history)
+
+setSubjectComboBox()
+ui.subject.activated.connect(clickerSubjectComboBox)
+ui.testName.activated.connect(clickerTestNameComboBox)
+
 
 Dialog.show()
 sys.exit(app.exec())

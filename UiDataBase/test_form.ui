@@ -6,14 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>647</width>
-    <height>677</height>
+    <width>660</width>
+    <height>660</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>580</width>
-    <height>70</height>
+    <width>660</width>
+    <height>660</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>660</width>
+    <height>660</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -47,7 +53,7 @@ background:rgb(170, 170, 127);
     <string>Следующий</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -83,13 +89,22 @@ background:rgb(170, 170, 127);
         <pointsize>14</pointsize>
        </font>
       </property>
+      <property name="contextMenuPolicy">
+       <enum>Qt::PreventContextMenu</enum>
+      </property>
       <property name="styleSheet">
-       <string notr="true">border-radius:20px;
+       <string notr="true">border-radius:10px;
 background:rgb(170, 170, 127);
 </string>
       </property>
+      <property name="autoFormatting">
+       <set>QTextEdit::AutoNone</set>
+      </property>
       <property name="readOnly">
        <bool>true</bool>
+      </property>
+      <property name="textInteractionFlags">
+       <set>Qt::TextSelectableByMouse</set>
       </property>
      </widget>
     </item>
@@ -114,6 +129,12 @@ background:rgb(170, 170, 127);
         <height>40</height>
        </size>
       </property>
+      <property name="maximumSize">
+       <size>
+        <width>580</width>
+        <height>40</height>
+       </size>
+      </property>
       <property name="font">
        <font>
         <family>Bookman Old Style</family>
@@ -127,7 +148,7 @@ background:rgb(150, 150, 112)
 </string>
       </property>
       <property name="text">
-       <string>Radio Button</string>
+       <string/>
       </property>
      </widget>
     </item>
@@ -152,6 +173,12 @@ background:rgb(150, 150, 112)
         <height>40</height>
        </size>
       </property>
+      <property name="maximumSize">
+       <size>
+        <width>580</width>
+        <height>40</height>
+       </size>
+      </property>
       <property name="font">
        <font>
         <family>Bookman Old Style</family>
@@ -165,7 +192,7 @@ background:rgb(150, 150, 112)
 </string>
       </property>
       <property name="text">
-       <string>Radio Button</string>
+       <string/>
       </property>
      </widget>
     </item>
@@ -190,6 +217,12 @@ background:rgb(150, 150, 112)
         <height>40</height>
        </size>
       </property>
+      <property name="maximumSize">
+       <size>
+        <width>580</width>
+        <height>40</height>
+       </size>
+      </property>
       <property name="font">
        <font>
         <family>Bookman Old Style</family>
@@ -203,13 +236,13 @@ background:rgb(150, 150, 112)
 </string>
       </property>
       <property name="text">
-       <string>Radio Button</string>
+       <string/>
       </property>
      </widget>
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -261,6 +294,13 @@ background:rgb(150, 150, 112)
         <height>30</height>
        </size>
       </property>
+      <property name="font">
+       <font>
+        <family>Bookman Old Style</family>
+        <pointsize>14</pointsize>
+        <bold>false</bold>
+       </font>
+      </property>
       <property name="styleSheet">
        <string notr="true">background-color:rgb(170, 170, 127);</string>
       </property>
@@ -268,7 +308,7 @@ background:rgb(150, 150, 112)
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -319,6 +359,12 @@ background:rgb(150, 150, 112)
         <width>480</width>
         <height>30</height>
        </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Bookman Old Style</family>
+        <pointsize>14</pointsize>
+       </font>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color:rgb(170, 170, 127);</string>

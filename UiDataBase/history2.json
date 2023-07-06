@@ -1,0 +1,108 @@
+{
+  "subject": "История",
+  "test_name": "Отечественная история",
+  "questions": [
+    {
+      "question": "Предками кого были восточные славяне?",
+      "answers": [
+        {
+          "response": "белорусов",
+          "correct": true
+        },
+        {
+          "response": "чехов",
+          "correct": false
+        },
+        {
+          "response": "болгар",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "question": "Древнерусское государство Киевская Русь образовалось?",
+      "answers": [
+        {
+          "response": "после прихода Рюрика в Новгород",
+          "correct": false
+        },
+        {
+          "response": "после похода князя Олега в Киев",
+          "correct": true
+        },
+        {
+          "response": "после крещения Руси при князе Владимире",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "question": "Какой политический строй был в Киевской Руси?",
+      "answers": [
+        {
+          "response": "раннефеодальная монархия",
+          "correct": true
+        },
+        {
+          "response": "сословная монархия",
+          "correct": false
+        },
+        {
+          "response": "вечевая республика",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "question": "Что такое вотчина?",
+      "answers": [
+        {
+          "response": "землевладение дворян",
+          "correct": false
+        },
+        {
+          "response": "землевладение опричников",
+          "correct": false
+        },
+        {
+          "response": "землевладение бояр и князей, передаваемое по наследству",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "question": "Кто считается автором концепции «Москва – Третий Рим»?",
+      "answers": [
+        {
+          "response": "великий князь Иван III в ХV в.",
+          "correct": false
+        },
+        {
+          "response": "митрополит Спиридон в XVI в.",
+          "correct": false
+        },
+        {
+          "response": "старец Елизарова монастыря Филофей в XVI в.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "question": "Когда, при ком завершилось образование Российского централизованного государства?",
+      "answers": [
+        {
+          "response": "при Иване III в конце XV в.",
+          "correct": false
+        },
+        {
+          "response": "при Василии III в XVI в.",
+          "correct": false
+        },
+        {
+          "response": "при Иване IV в XVI в.",
+          "correct": true
+        }
+      ]
+    }
+  ]
+}
