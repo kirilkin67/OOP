@@ -1,12 +1,12 @@
-from PyQt6 import QtGui, QtWidgets
-from PyQt6.QtWidgets import QMessageBox
+from PyQt6 import QtWidgets
 from testForm import Ui_Dialog
+from PyQt6.QtWidgets import QMessageBox
 import sys
 from test_data_base import TestDataBase
+from runTest import RunTest
 import json
 
 DATA_BASE = "subject_tests.db"
-TEST_NAME = "Искусство Древнего Египта"
 questions = tuple()
 
 
@@ -19,8 +19,8 @@ def read_test_file_json(name: str):
     try:
         with open(name, 'r', encoding='utf-8') as file:
             data = file.read()
-        test = json.loads(data)
-        return test
+        test_data = json.loads(data)
+        return test_data
     except FileNotFoundError:
         print("Файл не найден или не существует")
 
@@ -52,14 +52,14 @@ def add_test(file_name_json: str):
     insert_value_in_data_base(db, test_subject)
 
 
-def setQuestionAnswer(tasks: tuple, index: int):
-    question_id, test_id, question = tasks[index]
-    answers = db.select_answers(question_id)
-    ui.question.setText(question)
-    ui.response_1.setText(answers[0][2])
-    ui.response_2.setText(answers[1][2])
-    ui.response_3.setText(answers[2][2])
-
+# def setQuestionAnswer(tasks: tuple, index: int):
+#     question_id, test_id, question = tasks[index]
+#     answers = db.select_answers(question_id)
+#     ui.question.setText(question)
+#     ui.response_1.setText(answers[0][2])
+#     ui.response_2.setText(answers[1][2])
+#     ui.response_3.setText(answers[2][2])
+#
 
 def setSubjectComboBox():
     rows = db.select_subject_name_all()
@@ -82,6 +82,19 @@ def clearAll():
     ui.response_1.setText('')
     ui.response_2.setText('')
     ui.response_3.setText('')
+    ui.start.setEnabled(False)
+
+
+def clearResponses():
+    ui.response_1.setText('')
+    ui.response_2.setText('')
+    ui.response_3.setText('')
+
+
+def activeResponses(isActive: bool):
+    ui.response_1.setEnabled(isActive)
+    ui.response_2.setEnabled(isActive)
+    ui.response_3.setEnabled(isActive)
 
 
 def clickerSubjectComboBox():
@@ -94,11 +107,31 @@ def clickerSubjectComboBox():
 
 def clickerTestNameComboBox():
     ui.question.clear()
+    clearResponses()
+    ui.start.setEnabled(True)
+
+
+def clickerStart():
+    ui.question.clear()
+    activatedTestButton()
     test_name = ui.testName.currentText()
-    print(f"TEST - {test_name}")
-    db.select_test_name_id(test_name)
-    tasks = db.select_questions()
-    setQuestionAnswer(tasks, 1)
+    test.runTest(test_name)
+
+
+def activatedTestButton():
+    ui.subject.setEnabled(False)
+    ui.testName.setEnabled(False)
+    activeResponses(True)
+    ui.next.setEnabled(True)
+    ui.stop.setEnabled(True)
+    ui.start.setEnabled(False)
+
+
+def mainWindow():
+    ui.start.setEnabled(False)
+    activeResponses(False)
+    ui.next.setEnabled(False)
+    ui.stop.setEnabled(False)
 
 
 app = QtWidgets.QApplication(sys.argv)
@@ -106,17 +139,22 @@ Dialog = QtWidgets.QDialog()
 ui = Ui_Dialog()
 ui.setupUi(Dialog)
 
-
 db = TestDataBase(DATA_BASE)
-create_data_base(db)
-history = "history.json"
-add_test(history)
-history = "history2.json"
-add_test(history)
+test = RunTest(ui, db)
 
+# create_data_base(db)
+# history = "history.json"
+# add_test(history)
+# history = "history2.json"
+# add_test(history)
+
+# ui.start.setVisible(False)
+mainWindow()
 setSubjectComboBox()
 ui.subject.activated.connect(clickerSubjectComboBox)
 ui.testName.activated.connect(clickerTestNameComboBox)
+ui.start.clicked.connect(clickerStart)
+ui.next.clicked.connect(test.nextTask)
 
 
 Dialog.show()
