@@ -43,6 +43,16 @@ class TestDataBase:
                         correct BOOLEAN DEFAULT FALSE);""")
             conn.commit()
 
+    def create_table_test_result(self):
+        with sqlite3.connect(self.name) as conn:
+            cur = conn.cursor()
+            cur.execute("""CREATE TABLE IF NOT EXISTS test_result (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        question_id INTEGER NOT NULL REFERENCES questions(id), 
+                        response TEXT NOT NULL, 
+                        correct BOOLEAN DEFAULT FALSE);""")
+            conn.commit()
+
     def insert_subject(self, subject_name: str):
         with sqlite3.connect(self.name) as conn:
             cur = conn.cursor()
@@ -60,9 +70,10 @@ class TestDataBase:
         with sqlite3.connect(self.name) as conn:
             cur = conn.cursor()
             data = [self.subject_id, test_name]
-            cur.execute("INSERT OR IGNORE INTO test_name (subject_id, test_name) VALUES (?, ?)", data)
+            row = cur.execute("INSERT OR IGNORE INTO test_name (subject_id, test_name) VALUES (?, ?)", data)
             conn.commit()
             self.select_test_id_by_name(cur, test_name)
+            return row.fetchone()
 
     def insert_answers(self, question: str, response: str, correct: bool):
         with sqlite3.connect(self.name) as conn:
@@ -78,12 +89,18 @@ class TestDataBase:
             cur.execute("INSERT INTO questions (test_name_id, question) VALUES (?, ?)", [self.test_name_id, question])
             conn.commit()
 
+    def insert_test_result(self, question_id: int, response: str, correct: bool):
+        with sqlite3.connect(self.name) as conn:
+            cur = conn.cursor()
+            cur.execute("INSERT INTO test_result (question_id, response, correct) VALUES (?, ?, ?)",
+                        [question_id, response, correct])
+            conn.commit()
+
     def select_question_id(self, question: str):
         with sqlite3.connect(self.name) as conn:
             cur = conn.cursor()
             res = cur.execute("SELECT id FROM questions WHERE question = ?", [question])
             question_id, = res.fetchone()
-            print(f"ID вопроса - {question_id}")
             return question_id
 
     def select_test_name_id(self, name: str):
@@ -94,7 +111,6 @@ class TestDataBase:
     def select_test_id_by_name(self, cursor, test_name):
         res = cursor.execute("SELECT id FROM test_name WHERE test_name = ?", [test_name])
         self.test_name_id = res.fetchone()[0]
-        print(f"{test_name} - {self.test_name_id}")
 
     def select_questions(self):
         with sqlite3.connect(self.name) as conn:
@@ -119,10 +135,21 @@ class TestDataBase:
             cur = conn.cursor()
             res = cur.execute("SELECT id FROM subject WHERE subject_name = ?", [subject_name])
             self.subject_id = res.fetchone()[0]
-            print(f"ID -{self.subject_id}, предмет {subject_name}")
 
     def select_test_name(self):
         with sqlite3.connect(self.name) as conn:
             cur = conn.cursor()
             res = cur.execute("SELECT test_name FROM test_name WHERE subject_id = ?", [self.subject_id])
             return res.fetchall()
+
+    def select_result(self):
+        with sqlite3.connect(self.name) as conn:
+            cur = conn.cursor()
+            res = cur.execute("SELECT COUNT() FROM test_result WHERE correct = true")
+            return res.fetchone()[0]
+
+    def delete_test_result(self):
+        with sqlite3.connect(self.name) as conn:
+            cur = conn.cursor()
+            cur.execute("DELETE FROM test_result")
+            conn.commit()
