@@ -6,7 +6,6 @@ import sys
 import json
 
 DATA_BASE = "subject_tests.db"
-questions = tuple()
 
 
 def read_test_file_json(name: str):
@@ -43,8 +42,8 @@ def insert_questions_and_answers(data_base: TestDataBase, items: list):
 
 def insert_value_in_data_base(data_base: TestDataBase, json_obj):
     data_base.insert_subject(json_obj["subject"])
-    result = data_base.insert_test_name(json_obj["test_name"])
-    if result is not None:
+    row_cont = data_base.insert_test_name(json_obj["test_name"])
+    if row_cont == 1:
         insert_questions_and_answers(data_base, json_obj["questions"])
     else:
         print(f'Тест {json_obj["test_name"]} существует')
@@ -103,10 +102,12 @@ db = TestDataBase(DATA_BASE)
 test = RunTest(ui, db)
 
 create_data_base(db)
-history = "history.json"
-add_test(history)
-history = "history2.json"
-add_test(history)
+subject = "history.json"
+add_test(subject)
+subject = "history2.json"
+add_test(subject)
+subject = "physics.json"
+add_test(subject)
 
 mainWindow()
 ui.subject.activated.connect(clickerSubjectComboBox)
@@ -114,7 +115,6 @@ ui.testName.activated.connect(test.clickerTestNameComboBox)
 ui.start.clicked.connect(test.clickerStart)
 ui.next.clicked.connect(test.clickerNext)
 ui.stop.clicked.connect(test.clickerStop)
-
 
 Dialog.show()
 sys.exit(app.exec())

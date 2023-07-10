@@ -30,7 +30,7 @@ class TestDataBase:
             cur.execute("""CREATE TABLE IF NOT EXISTS questions (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
                         test_name_id INTEGER NOT NULL REFERENCES test_name(id),
-                        question TEXT NOT NULL UNIQUE);""")
+                        question TEXT NOT NULL);""")
             conn.commit()
 
     def create_table_answers(self):
@@ -70,10 +70,11 @@ class TestDataBase:
         with sqlite3.connect(self.name) as conn:
             cur = conn.cursor()
             data = [self.subject_id, test_name]
-            row = cur.execute("INSERT OR IGNORE INTO test_name (subject_id, test_name) VALUES (?, ?)", data)
+            cur.execute("INSERT OR IGNORE INTO test_name (subject_id, test_name) VALUES (?, ?)", data)
+            row_count = cur.rowcount
             conn.commit()
             self.select_test_id_by_name(cur, test_name)
-            return row.fetchone()
+            return row_count
 
     def insert_answers(self, question: str, response: str, correct: bool):
         with sqlite3.connect(self.name) as conn:
