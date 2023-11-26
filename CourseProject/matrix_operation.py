@@ -28,7 +28,7 @@ class Matrix:
         self.matrix[row][col] = value
 
     def __add__(self, other):
-        """ Сложение матриц"""
+        """ Сложение матриц """
         if self.rows != other.rows or self.columns != other.columns:
             raise ValueError("Матрицы должны иметь одинаковые размеры")
         result = Matrix(self.rows, self.columns)
@@ -38,7 +38,7 @@ class Matrix:
         return result
 
     def __sub__(self, other):
-        """ Вычитание матриц"""
+        """ Вычитание матриц """
         if self.rows != other.rows or self.columns != other.columns:
             raise ValueError("Матрицы должны иметь одинаковые размеры")
         result = Matrix(self.rows, self.columns)
@@ -48,7 +48,7 @@ class Matrix:
         return result
 
     def __mul__(self, scalar):
-        """ Умножение матрицы на число"""
+        """ Умножение матрицы на число """
         result = Matrix(self.rows, self.columns)
         result.matrix = [[scalar * column for column in row] for row in self.matrix]
         return result
